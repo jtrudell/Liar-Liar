@@ -4,6 +4,19 @@
       <h4 class='text-center'>{{model.subtitle}}</h4>
     </div>
   </div>
-  {{lie-form lies=model.lies}}
+  {{lie-form lie=model.lie}}
+  {{#if model.lie.submitted}}
+    <div class='row'>
+      <div class='col-lg-12'>
+        <p>So you think you are lying about {{model.lie.description}}?</p>
+        <p>{{model.lie.response}}</p>
+      </div>
+      <button
+        class='btn btn-primary'
+        {{action 'removeLie'}}>
+        Absolve Yourself!
+      </button>
+    </div>
+  {{/if}}
   {{outlet}}
 </div>

@@ -1,11 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+
   model() {
-    const headings = {
+    return {
       subtitle: "If you've made it to this page, you probably aren't lying. But let's do this anyway.",
-      lies: null,
+      lie: {
+        submitted: null,
+        description: null,
+        response: null,
+      },
     };
-    return headings;
   }
 });
