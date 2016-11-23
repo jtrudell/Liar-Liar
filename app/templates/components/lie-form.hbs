@@ -1,0 +1,13 @@
+<div class='row'>
+  <form class='form-horizontal col-xs-12 center-block'>
+    <div class='form-group col-xs-12'>
+      {{input class="form-control" type="text" value=lieDescription}}
+      <button
+        class="btn btn-primary"
+        {{action "submitLie"}}>
+        Submit!
+      </button>
+    </div>
+  </form>
+</div>
+{{yield}}
