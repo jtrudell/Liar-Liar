@@ -34,5 +34,5 @@ export default Ember.Component.extend({
       });
       this.set('lieDescription', null);
     },
-  }
+  },
 });
