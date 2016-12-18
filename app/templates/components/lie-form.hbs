@@ -1,7 +1,10 @@
 <div class='row'>
-  <form class='form-horizontal col-xs-12 center-block'>
+  <form class='form-horizontal col-xs-12'>
     <div class='form-group col-xs-12'>
-      {{input class="form-control" type="text" value=lieDescription}}
+      {{textarea class="form-control"
+      type="text"
+      value=lieDescription
+      placeholder="Describe your \"lie\" here."}}
       <button
         class="btn btn-primary"
         {{action "submitLie"}}>
