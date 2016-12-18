@@ -1,7 +1,8 @@
-# Ember-quickstart
+# Liar-Liar
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Just trying out Ember and convincing you that you aren't a liar. Project started with [Ember Quick Start](https://guides.emberjs.com/v2.3.0/getting-started/quick-start/).
+
+# Ember Quickstart README:
 
 ## Prerequisites
 
