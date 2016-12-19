@@ -25,8 +25,6 @@ export default Ember.Component.extend({
       }
 
       this._fetchDonald().then((article) => {
-
-console.log('article', article);
         this.setProperties({
           lie: {
             description: description,
