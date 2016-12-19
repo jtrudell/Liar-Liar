@@ -7,7 +7,7 @@ export default Ember.Route.extend({
         submitted: null,
         description: null,
         response: null,
-        donald: "loading...",
+        donald: null,
       },
     };
   },

@@ -24,13 +24,14 @@ export default Ember.Component.extend({
         response = options[randomIndex];
       }
 
-      this._fetchDonald().then((article) => {
+      const donald = this.get('lie.donald');
+      this._fetchDonald(donald).then((article) => {
         this.setProperties({
           lie: {
             description: description,
             submitted: true,
             response: response,
-            donald: Ember.String.htmlSafe(article),
+            donald: article,
           },
         });
         this.set('lieDescription', null);
@@ -38,23 +39,29 @@ export default Ember.Component.extend({
     },
   },
 
-  _fetchDonald: () => {
+  _fetchDonald: (donald) => {
     let article = '';
     return new Promise((resolve, reject) => {
-      Ember.$.getJSON(
-        "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=Donald_Trump",
-        (res) => {
-          const pages = res.query.pages;
-          for (var key in pages) {
-            article += pages[key]['extract'];
-          }
-        }
-      ).done(() => {
-        resolve(article);
-      }).fail(() => {
-        reject("<p>Something went wrong</p>");
-        console.log("Something went wrong");
-      });
+      if (donald !== null) {
+        resolve(donald);
+      } else {
+        Ember.$.getJSON(
+          "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&origin=*&exintro=&titles=Donald_Trump",
+          (res) => {
+            const pages = res.query.pages;
+            for (var key in pages) {
+              article += pages[key]['extract'];
+            }
+          })
+        .done(() => {
+          const articleHTML = Ember.String.htmlSafe(article);
+          resolve(articleHTML);
+        })
+        .fail(() => {
+          reject("<p>Something went wrong</p>");
+          console.log("Something went wrong");
+        });
+      }
     });
   }
 });
