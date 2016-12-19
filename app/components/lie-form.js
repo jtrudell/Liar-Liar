@@ -16,7 +16,6 @@ export default Ember.Component.extend({
       const options = this.get('options');
       const randomIndex = Math.floor(Math.random() * options.length);
       let response;
-
       if (description === null || description.trim().length === 0) {
         response = "You can't be lying, you haven't told a lie!";
       } else if (description.includes('sick')) {
@@ -25,14 +24,37 @@ export default Ember.Component.extend({
         response = options[randomIndex];
       }
 
-      this.setProperties({
-        lie: {
-          description: description,
-          submitted: true,
-          response: response,
-        }
+      this._fetchDonald().then((article) => {
+        this.setProperties({
+          lie: {
+            description: description,
+            submitted: true,
+            response: response,
+            donald: article,
+          },
+        });
+        this.set('lieDescription', null);
       });
-      this.set('lieDescription', null);
     },
   },
+
+  _fetchDonald: () => {
+    let article = '';
+    return new Promise((resolve, reject) => {
+      Ember.$.getJSON(
+        "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=Donald_Trump",
+        (res) => {
+          const pages = res.query.pages;
+          for (var key in pages) {
+            article += pages[key]['extract'];
+          }
+        }
+      ).done(() => {
+        resolve(Ember.$.parseHTML(article));
+      }).fail(() => {
+        reject("<p>Something went wrong</p>");
+        console.log("Something went wrong");
+      });
+    });
+  }
 });
