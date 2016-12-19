@@ -25,12 +25,14 @@ export default Ember.Component.extend({
       }
 
       this._fetchDonald().then((article) => {
+
+console.log('article', article);
         this.setProperties({
           lie: {
             description: description,
             submitted: true,
             response: response,
-            donald: article,
+            donald: Ember.String.htmlSafe(article),
           },
         });
         this.set('lieDescription', null);
@@ -50,7 +52,7 @@ export default Ember.Component.extend({
           }
         }
       ).done(() => {
-        resolve(Ember.$.parseHTML(article));
+        resolve(article);
       }).fail(() => {
         reject("<p>Something went wrong</p>");
         console.log("Something went wrong");
