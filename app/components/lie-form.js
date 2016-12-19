@@ -4,19 +4,24 @@ export default Ember.Component.extend({
   lieDescription: null,
   lie: null,
   options: [
-    "I don't know, you just don't seem like a liar to me.",
-    "You only feel that because it is about being sick. Everyone feels like they are lying about being sick when they are really sick.",
-    "I see your point but you wouldn't feel this guilty about it if you were a liar.",
-    "I blame your mother. Or your father. Or both."
+    "I don't know, you still just don't seem like a liar to me. Better luck next time!",
+    "You only feel that way because you really are sick. Everyone feels like that. Go back to bed.",
+    "I see your point, but you wouldn't feel guilty about this if you were a liar.",
+    "I blame your mother. Or your father. Or both.",
+    "White lie, you're good.",
+    "HELP! I'm falling asleep I am so bored. You are too boring to be lying.",
+    "Dude, it took some serious mental gymnastics for you to get to 'I'm a liar'. Wow.",
+    "You suck at lying. Worry about that.",
   ],
 
   actions: {
     submitLie() {
-      const description = this.get('lieDescription');
+      let description = this.get('lieDescription');
       const options = this.get('options');
       const randomIndex = Math.floor(Math.random() * options.length);
       let response;
       if (description === null || description.trim().length === 0) {
+        description = "nothing";
         response = "You can't be lying, you haven't told a lie!";
       } else if (description.includes('sick')) {
         response = options[1];

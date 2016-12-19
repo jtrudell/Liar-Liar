@@ -6,6 +6,15 @@ form {
   margin: 10px 0;
 }
 
+.well {
+  margin-top: 20px;
+}
+
+.donald-pic {
+  max-width: 50%;
+  padding: 10px 0 10px 20px;
+}
+
 footer {
   padding: 20px;
 }

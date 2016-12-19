@@ -1,17 +1,21 @@
-<div class='container'>
+<div class="container">
   {{lie-form lie=model.lie}}
   {{#if model.lie.submitted}}
-  <div class='row'>
-    <div class='col-lg-12'>
-      <p>So you think you are lying about <strong>{{model.lie.description}}</strong>?</p>
-      <p>{{model.lie.response}}</p>
-      <p>You know who was a huge liar?</p>
-      <div id="donald">
+  <div class="container row">
+    <div class="col-lg-12 text-center">
+      <h3>So you think you are lying about <strong>{{model.lie.description}}</strong>?</h3>
+      <h2>{{model.lie.response}}</h2>
+      <h3>You know who is a huge liar? HUGE. The best liar. Great liar.</h3>
+    </div>
+    <div class="col-lg-12">
+      <div class="well well-lg" id="donald">
+        <img src="donald.jpg" class="donald-pic img-responsive pull-right" alt="Donald. Sigh." />
+        <p>From Wikipedia: <a href="https://en.wikipedia.org/wiki/Donald_Trump" target="_blank">Donald Trump</a></p>
         {{model.lie.donald}}
       </div>
       <button
-        class='btn btn-primary'
-        {{action 'removeLie'}}>
+        class="btn btn-primary"
+        {{action "removeLie"}}>
         Absolve Yourself!
       </button>
     </div>
